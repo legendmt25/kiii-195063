@@ -13,6 +13,11 @@ kubectl apply -f devops-tools/jenkins/pvc.yaml
 kubectl apply -f devops-tools/jenkins/deploy.yaml
 kubectl apply -f devops-tools/jenkins/service.yaml
 kubectl apply -f devops-tools/jenkins/ingress.yaml
+
+kubectl apply -f app/namespace.yaml
+kubectl apply -f app/iam/deploy.yaml
+kubectl apply -f app/iam/service.yaml
+kubectl apply -f app/iam/ingress.yaml
 ```
 
 ## Get jenkins password

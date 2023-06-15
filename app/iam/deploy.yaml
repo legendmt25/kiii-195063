@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iam
+  namespace: app
+spec:
+  selector:
+    matchLabels:
+      app: iam
+  template:
+    metadata:
+      labels:
+        app: iam
+    spec:
+      containers:
+      - name: keycloak-iam
+        image: keycloak/keycloak:21.0
+        args:
+          - "start-dev"
+        env:
+          - name: KC_PROXY
+            value: "edge"
+          - name: KEYCLOAK_ADMIN
+            value: "admin"
+          - name: KEYCLOAK_ADMIN_PASSWORD
+            value: "admin"
+          - name: KC_HOSTNAME_ADMIN_URL
+            value: "https://www.iam.195063.com"
+          - name: KC_HOSTNAME_URL
+            value: "https://www.iam.195063.com"
+        resources:
+          limits:
+            memory: '1Gi'
+            cpu: '500m'
+        ports:
+        - name: http
+          containerPort: 8080
+        - name: https
+          containerPort: 8443
