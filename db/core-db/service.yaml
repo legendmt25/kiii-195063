@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: core-db-service
+  namespace: db
+spec:
+  selector:
+    app: core-db
+  ports:
+    - port: 80
+      targetPort: 7474
+      name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: core-db-service-bolt
+  namespace: db
+spec:
+  type: LoadBalancer
+  selector:
+    app: core-db
+  ports:
+    - port: 7687
+      targetPort: 7687

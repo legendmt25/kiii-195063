@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forum
+  namespace: app
+spec:
+  selector:
+    matchLabels:
+      app: forum
+  template:
+    metadata:
+      labels:
+        app: forum
+    spec:
+      containers:
+        - name: forum
+          image: legendmt25/code-help:forum-stable
+          resources:
+            limits:
+              memory: '1Gi'
+              cpu: '500m'
+          envFrom:
+            - configMapRef:
+                name: forum-configmap
+            - secretRef:
+                name: forum-secret
+          ports:
+            - name: http
+              containerPort: 3001

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: forum-configmap
+  namespace: app
+data:
+  key: value #TODO: Update configmap for forum deployment

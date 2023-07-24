@@ -2,22 +2,23 @@
 
 ## Create local cluster
 ```
-k3d cluster create 195063 -p 80:80@loadbalancer -p 443:443@loadbalancer --k3s-arg "--disable=traefik@server:*"
+k3d cluster create 195063 -p 80:80@loadbalancer -p 443:443@loadbalancer -p 7687:7687@loadbalancer -p 5432:5432@loadbalancer --k3s-arg "--disable=traefik@server:*"
 ```
 
 ## Init
 ```
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
 kubectl apply -f devops-tools/namespace.yaml
-kubectl apply -f devops-tools/jenkins/pvc.yaml
-kubectl apply -f devops-tools/jenkins/deploy.yaml
-kubectl apply -f devops-tools/jenkins/service.yaml
-kubectl apply -f devops-tools/jenkins/ingress.yaml
+kubectl apply -f devops-tools/nginx/
+kubectl apply -f devops-tools/jenkins/
 
 kubectl apply -f app/namespace.yaml
-kubectl apply -f app/iam/deploy.yaml
-kubectl apply -f app/iam/service.yaml
-kubectl apply -f app/iam/ingress.yaml
+kubectl apply -f app/iam/
+kubectl apply -f app/core/
+kubectl apply -f app/forum/
+
+kubectl apply -f db/namespace.yaml
+kubectl apply -f db/core-db/
+kubectl apply -f db/forum-db/
 ```
 
 ## Get jenkins password

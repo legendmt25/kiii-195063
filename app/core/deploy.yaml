@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core
+  namespace: app
+spec:
+  selector:
+    matchLabels:
+      app: core
+  template:
+    metadata:
+      labels:
+        app: core
+    spec:
+      containers:
+        - name: core
+          image: legendmt25/code-help:core-stable
+          resources:
+            limits:
+              memory: '1Gi'
+              cpu: '500m'
+          envFrom:
+            - configMapRef:
+                name: core-configmap
+            - secretRef:
+                name: core-secret
+          ports:
+            - name: http
+              containerPort: 3000

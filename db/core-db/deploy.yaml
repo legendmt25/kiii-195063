@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core-db
+  namespace: db
+spec:
+  selector:
+    matchLabels:
+      app: core-db
+  template:
+    metadata:
+      labels:
+        app: core-db
+    spec:
+      containers:
+        - name: core-db
+          resources:
+            limits:
+              memory: '1Gi'
+              cpu: '500m'
+          image: neo4j:5.2.0
+          volumeMounts:
+            - mountPath: /data
+              name: core-db-data
+          envFrom:
+            - secretRef:
+                name: core-db-secret
+                optional: false
+          ports:
+            - name: http
+              containerPort: 7474
+            - name: bolt
+              containerPort: 7687
+      volumes:
+        - name: core-db-data
+          persistentVolumeClaim:
+            claimName: core-db-pvc

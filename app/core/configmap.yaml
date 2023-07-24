@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: core-configmap
+  namespace: app
+data:
+  key: value #TODO: Update configmap for core deployment
