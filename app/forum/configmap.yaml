@@ -4,4 +4,8 @@ metadata:
   name: forum-configmap
   namespace: app
 data:
-  key: value #TODO: Update configmap for forum deployment
+  SPRING_SECURITY_RESOURCESERVER_JWT_ISSUER-URI: http://www.iam.195063.com/realms/code-help
+  SPRING_SECURITY_RESOURCESERVER_JWT_JWK-SET-URI: http://www.iam.195063.com/realms/code-help/protocol/openid-connect/certs
+  SPRING_DATASOURCE_USERNAME: user
+  SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/code_help
+  SERVER_PORT: '3001'

@@ -4,4 +4,8 @@ metadata:
   name: core-configmap
   namespace: app
 data:
-  key: value #TODO: Update configmap for core deployment
+  SPRING_SECURITY_RESOURCESERVER_JWT_ISSUER-URI: http://www.iam.195063.com/realms/code-help
+  SPRING_SECURITY_RESOURCESERVER_JWT_JWK-SET-URI: http://www.iam.195063.com/realms/code-help/protocol/openid-connect/certs
+  SPRING_NEO4J_AUTHENTICATION_USERNAME: neo4j
+  SPRING_NEO4J_URI: bolt://www.db.core.195063.com:7687
+  SERVER_PORT: '3000'
