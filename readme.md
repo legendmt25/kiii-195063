@@ -11,14 +11,14 @@ kubectl apply -f devops-tools/namespace.yaml
 kubectl apply -f devops-tools/nginx/
 kubectl apply -f devops-tools/jenkins/
 
+kubectl apply -f db/namespace.yaml
+kubectl apply -f db/core-db/
+kubectl apply -f db/forum-db/
+
 kubectl apply -f app/namespace.yaml
 kubectl apply -f app/iam/
 kubectl apply -f app/core/
 kubectl apply -f app/forum/
-
-kubectl apply -f db/namespace.yaml
-kubectl apply -f db/core-db/
-kubectl apply -f db/forum-db/
 ```
 
 ## Get jenkins password

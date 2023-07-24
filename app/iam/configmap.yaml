@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: iam-configmap
+data:
+  KC_PROXY: edge
+  KC_HOSTNAME_ADMIN_URL: https://www.iam.195063.com
+  KC_HOSTNAME_URL: https://www.iam.195063.com
