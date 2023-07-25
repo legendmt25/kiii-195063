@@ -4,8 +4,8 @@ metadata:
   name: forum-configmap
   namespace: app
 data:
-  SPRING_SECURITY_RESOURCESERVER_JWT_ISSUER-URI: http://www.iam.195063.com/realms/code-help
-  SPRING_SECURITY_RESOURCESERVER_JWT_JWK-SET-URI: http://www.iam.195063.com/realms/code-help/protocol/openid-connect/certs
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUERURI: http://10.0.2.2/realms/code-help
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWKSETURI: http://iam-service.app.svc.cluster.local/realms/code-help/protocol/openid-connect/certs
   SPRING_DATASOURCE_USERNAME: user
-  SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/code_help
+  SPRING_DATASOURCE_URL: jdbc:postgresql://forum-db-service.db.svc.cluster.local:5432/code_help
   SERVER_PORT: '3001'

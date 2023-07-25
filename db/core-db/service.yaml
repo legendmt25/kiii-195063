@@ -17,7 +17,7 @@ metadata:
   name: core-db-service-bolt
   namespace: db
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: core-db
   ports:
