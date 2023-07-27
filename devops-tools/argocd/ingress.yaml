@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-ingress
+  namespace: devops-tools
+  labels:
+    name: argocd-ingress
+  annotations:
+    kubernetes.io/ingress.allow-http: 'false'
+    kubernetes.io/ingress.class: 'nginx'
+    nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
+    nginx.ingress.kubernetes.io/proxy-body-size: 20m
+spec:
+  rules:
+    - host: www.argocd.195063.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 80

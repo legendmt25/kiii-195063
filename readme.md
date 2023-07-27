@@ -10,6 +10,7 @@ k3d cluster create 195063 -p 80:80@loadbalancer -p 443:443@loadbalancer -p 7687:
 kubectl apply -f devops-tools/namespace.yaml
 kubectl apply -f devops-tools/nginx/
 kubectl apply -f devops-tools/jenkins/
+kubectl apply -f devops-tools/argocd/
 
 kubectl apply -f db/namespace.yaml
 kubectl apply -f db/core-db/
@@ -25,4 +26,12 @@ kubectl apply -f app/forum/
 ```
 kubectl logs deployment/jenkins -c jenkins -n devops-tools | grep pass -A 3
 kubectl exec -i <pod-id> -n devops-tools -c jenkins -- cat var/jenkins_home/secrets/initialAdminPassword
+```
+
+## Get argocd password
+```
+Install ArgoCD CLI:
+https://argo-cd.readthedocs.io/en/stable/cli_installation/
+
+argocd admin initial-password -n devops-tools
 ```
