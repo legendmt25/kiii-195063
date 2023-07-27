@@ -23,5 +23,6 @@ kubectl apply -f app/forum/
 
 ## Get jenkins password
 ```
-kubectl logs deployment/jenkins -n devops-tools | grep pass -A 3
+kubectl logs deployment/jenkins -c jenkins -n devops-tools | grep pass -A 3
+kubectl exec -i <pod-id> -n devops-tools -c jenkins -- cat var/jenkins_home/secrets/initialAdminPassword
 ```

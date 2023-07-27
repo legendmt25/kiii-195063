@@ -13,9 +13,34 @@ spec:
       labels:
         app: jenkins
     spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
       containers:
+        - name: docker
+          image: docker:dind
+          securityContext:
+            privileged: true
+            runAsUser: 0
+          env:
+            - name: DOCKER_TLS_CERTS
+              value: /certs
+          volumeMounts:
+            - name: docker-certs
+              mountPath: /certs/client
+          resources:
+            limits:
+              memory: '2Gi'
+              cpu: '200m'
         - name: jenkins
-          image: jenkins/jenkins:lts
+          image: legendmt25/jenkins:latest
+          env:
+            - name: DOCKER_HOST
+              value: tcp://localhost:2376
+            - name: DOCKER_CERT_PATH
+              value: /certs/client
+            - name: DOCKER_TLS_VERIFY
+              value: '0'
           resources:
             limits:
               memory: '2Gi'
@@ -28,7 +53,19 @@ spec:
           volumeMounts:
             - name: jenkins-data
               mountPath: /var/jenkins_home
+            - name: docker-certs
+              mountPath: /certs/client
+              readOnly: true
       volumes:
         - name: jenkins-data
           persistentVolumeClaim:
             claimName: jenkins-pvc
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: docker
+          hostPath:
+            path: /usr/bin/docker
+        - name: docker-certs
+          persistentVolumeClaim:
+            claimName: jenkins-docker-pvc
