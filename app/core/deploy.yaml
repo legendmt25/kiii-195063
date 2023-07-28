@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: core
-          image: legendmt25/code-help:core-stable
+          image: legendmt25/code-help:core-0.0.1-SNAPSHOT
           resources:
             limits:
               memory: '1Gi'
