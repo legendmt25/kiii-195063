@@ -41,6 +41,8 @@ spec:
               value: /certs/client
             - name: DOCKER_TLS_VERIFY
               value: '0'
+            - name: JENKINS_OPTS
+              value: --prefix=/ci
           resources:
             limits:
               memory: '2Gi'
