@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: forum-db
-  serviceName: forum-db
+  serviceName: forum-db-service
   template:
     metadata:
       labels:
@@ -29,12 +29,14 @@ spec:
                 name: forum-db-secret
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
-              name: forum-db-postgres-data
-      volumeClaimTemplates:
-        - metadata:
-            name: forum-db-postgres-data
-          spec:
-            accessModes: ['ReadWriteOnce']
-            resources:
-              requests:
-                storage: 1Gi
+              name: forum-db-data
+  volumeClaimTemplates:
+    - metadata:
+        name: forum-db-data
+        namespace: db
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
