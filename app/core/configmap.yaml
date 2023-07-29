@@ -7,5 +7,5 @@ data:
   SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUERURI: http://10.0.2.2/realms/code-help
   SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWKSETURI: http://iam-service.app.svc.cluster.local/realms/code-help/protocol/openid-connect/certs
   SPRING_NEO4J_AUTHENTICATION_USERNAME: neo4j
-  SPRING_NEO4J_URI: bolt://core-db-service-bolt.db.svc.cluster.local:7687
+  SPRING_NEO4J_URI: bolt://core-db-service.db.svc.cluster.local:7687
   SERVER_PORT: '3000'
