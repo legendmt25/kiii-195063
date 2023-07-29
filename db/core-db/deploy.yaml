@@ -1,9 +1,10 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: core-db
   namespace: db
 spec:
+  serviceName: core-db-service
   selector:
     matchLabels:
       app: core-db
@@ -21,7 +22,7 @@ spec:
           image: neo4j:5.2.0
           volumeMounts:
             - mountPath: /data
-              name: core-db-data
+              name: core-db-pvc-data
           envFrom:
             - secretRef:
                 name: core-db-secret
@@ -31,7 +32,13 @@ spec:
               containerPort: 7474
             - name: bolt
               containerPort: 7687
-      volumes:
-        - name: core-db-data
-          persistentVolumeClaim:
-            claimName: core-db-pvc
+      volumeClaimTemplates:
+        - metadata:
+            name: core-db-pvc-data
+            namespace: db
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 3Gi

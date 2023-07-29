@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: forum-db
   namespace: db
@@ -7,6 +7,7 @@ spec:
   selector:
     matchLabels:
       app: forum-db
+  serviceName: forum-db
   template:
     metadata:
       labels:
@@ -29,7 +30,13 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: forum-db-postgres-data
-      volumes:
-        - name: forum-db-postgres-data
-          persistentVolumeClaim:
-            claimName: forum-db-pvc
+      volumeClaimTemplates:
+        - metadata:
+            name: forum-db-pvc-postgres-data
+            namespace: db
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 3Gi
