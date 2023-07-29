@@ -33,7 +33,6 @@ spec:
       volumeClaimTemplates:
         - metadata:
             name: forum-db-pvc-postgres-data
-            namespace: db
           spec:
             accessModes:
               - ReadWriteOnce
