@@ -29,13 +29,12 @@ spec:
                 name: forum-db-secret
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
-              name: forum-db-pvc-postgres-data
+              name: forum-db-postgres-data
       volumeClaimTemplates:
         - metadata:
-            name: forum-db-pvc-postgres-data
+            name: forum-db-postgres-data
           spec:
-            accessModes:
-              - ReadWriteOnce
+            accessModes: ['ReadWriteOnce']
             resources:
               requests:
-                storage: 3Gi
+                storage: 1Gi
