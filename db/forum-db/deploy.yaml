@@ -29,7 +29,7 @@ spec:
                 name: forum-db-secret
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
-              name: forum-db-postgres-data
+              name: forum-db-pvc-postgres-data
       volumeClaimTemplates:
         - metadata:
             name: forum-db-pvc-postgres-data
