@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: forum
-          image: legendmt25/code-help:forum-stable
+          image: legendmt25/code-help:forum-0.0.1-SNAPSHOT
           resources:
             limits:
               memory: '1Gi'
