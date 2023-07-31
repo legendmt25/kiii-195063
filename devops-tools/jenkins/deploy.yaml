@@ -70,4 +70,4 @@ spec:
             path: /usr/bin/docker
         - name: docker-certs
           persistentVolumeClaim:
-            claimName: jenkins-docker-pvc
+            claimName: docker-certs-pvc

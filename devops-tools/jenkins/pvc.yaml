@@ -13,11 +13,11 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: jenkins-pvc
+  name: docker-certs-pvc
   namespace: devops-tools
 spec:
   resources:
     requests:
-      storage: 3Gi
+      storage: 1Gi
   accessModes:
     - ReadWriteOnce
